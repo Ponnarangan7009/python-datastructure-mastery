@@ -1,210 +1,182 @@
 # ============================================
-# SORTED() — EXERCISES
+# SORTED() — EXERCISES WITH SOLUTIONS
 # ============================================
 
-
-# Exercise 1
-# Sort the numbers in ascending order.
-
+# Exercise 1: Sort numbers in ascending order.
 numbers = [40, 10, 30, 20, 50]
-
-# Expected:
+result = sorted(numbers)
+print("1:", result)
 # [10, 20, 30, 40, 50]
 
 
-# Exercise 2
-# Use sorted() and store the result in a new variable.
-# Check whether the original list changes.
-
+# Exercise 2: sorted() returns a new list.
 numbers = [40, 10, 30, 20]
+result = sorted(numbers)
+print("2 - original:", numbers)
+print("2 - sorted:  ", result)
+# original: [40, 10, 30, 20]
+# sorted:   [10, 20, 30, 40]
 
-# Expected:
-# numbers -> [40, 10, 30, 20]
-# result  -> [10, 20, 30, 40]
 
-
-# Exercise 3
-# Sort the numbers in descending order using reverse=True.
-
+# Exercise 3: Sort in descending order.
 numbers = [40, 10, 30, 20]
-
-# Expected:
+result = sorted(numbers, reverse=True)
+print("3:", result)
 # [40, 30, 20, 10]
 
 
-# Exercise 4
-# Sort these names alphabetically.
-
+# Exercise 4: Sort names alphabetically.
 names = ["Charlie", "Alice", "Bob", "David"]
+result = sorted(names)
+print("4:", result)
+# ['Alice', 'Bob', 'Charlie', 'David']
 
-# Expected:
-# ["Alice", "Bob", "Charlie", "David"]
 
-
-# Exercise 5
-# Sort the names by their length using key=len.
-
+# Exercise 5: Sort names by length using key=len.
 names = ["Alexander", "Bob", "John", "David"]
+result = sorted(names, key=len)
+print("5:", result)
+# ['Bob', 'John', 'David', 'Alexander']
 
-# Expected:
-# ["Bob", "John", "David", "Alexander"]
 
-
-# Exercise 6
-# Sort the names by length using lambda.
-
+# Exercise 6: Sort names by length using lambda.
 names = ["Alexander", "Bob", "John", "David"]
+result = sorted(names, key=lambda name: len(name))
+print("6:", result)
+# ['Bob', 'John', 'David', 'Alexander']
 
-# Use:
-# key=lambda ...
 
-
-# Exercise 7
-# Sort the tests by execution time (second element).
-
+# Exercise 7: Sort tests by execution time (second value).
 tests = [
     ["login", 120],
     ["payment", 450],
     ["search", 80],
-    ["checkout", 300]
+    ["checkout", 300],
 ]
-
-# Expected:
-# [
-#     ["search", 80],
-#     ["login", 120],
-#     ["checkout", 300],
-#     ["payment", 450]
-# ]
+result = sorted(tests, key=lambda test: test[1])
+print("7:", result)
+# [['search', 80], ['login', 120], ['checkout', 300], ['payment', 450]]
 
 
-# Exercise 8
-# Sort the same tests by execution time,
-# but from slowest to fastest.
-
+# Exercise 8: Sort tests from slowest to fastest.
 tests = [
     ["login", 120],
     ["payment", 450],
     ["search", 80],
-    ["checkout", 300]
+    ["checkout", 300],
 ]
+result = sorted(tests, key=lambda test: test[1], reverse=True)
+print("8:", result)
+# [['payment', 450], ['checkout', 300], ['login', 120], ['search', 80]]
 
-# Use reverse=True.
 
-
-# Exercise 9
-# Create a normal function called get_time()
-# that returns the execution time.
-# Use it as the key for sorted().
-
+# Exercise 9: Use a normal function as the sorting key.
 def get_time(test):
-    # your code
+    return test[1]
 
-
-tests = [
-    ["login", 120],
-    ["payment", 450],
-    ["search", 80]
-]
-
-
-# Exercise 10
-# Sort these names by length from longest to shortest.
-
-names = ["Alexander", "Bob", "Christopher", "Dan"]
-
-# Use:
-# key=len
-# reverse=True
-
-
-# Exercise 11
-# Sort the tests by execution time from
-# highest to lowest.
 
 tests = [
     ["login", 120],
     ["payment", 450],
     ["search", 80],
-    ["checkout", 300]
 ]
-
-# Use lambda and reverse=True.
-
-
-# Exercise 12
-# Use the get_time() function from Exercise 9.
-# Sort the tests from highest execution time
-# to lowest execution time.
-
-# Use reverse=True.
+result = sorted(tests, key=get_time)
+print("9:", result)
+# [['search', 80], ['login', 120], ['payment', 450]]
 
 
-# Exercise 13
-# Sort these tests by execution time.
+# Exercise 10: Sort names by length, longest first.
+names = ["Alexander", "Bob", "John", "David"]
+result = sorted(names, key=len, reverse=True)
+print("10:", result)
+# ['Alexander', 'Charlie' ...] — see actual names above:
+# ['Alexander', 'Bob', 'John', 'David'] sorted by length:
+# ['Alexander', 'David', 'John', 'Bob']
+
+
+# Exercise 11: Sort tests by time, largest first.
+tests = [
+    ["login", 120],
+    ["payment", 450],
+    ["search", 80],
+    ["checkout", 300],
+]
+result = sorted(tests, key=lambda test: test[1], reverse=True)
+print("11:", result)
+# [['payment', 450], ['checkout', 300], ['login', 120], ['search', 80]]
+
+
+# Exercise 12: Use a normal function and reverse=True.
+def get_time(test):
+    return test[1]
+
 
 tests = [
-    ["search", "PASS", 80],
-    ["payment", "FAIL", 450],
-    ["search", "PASS", 80],
-    ["checkout", "FAIL", 300]
+    ["login", 120],
+    ["payment", 450],
+    ["search", 80],
 ]
-
-# Hint:
-# execution time is test[2]
-
-
-# Exercise 14
-# Sort first by status and then by execution time.
-
-tests = [
-    ["login", "PASS", 120],
-    ["payment", "FAIL", 450],
-    ["search", "PASS", 80],
-    ["checkout", "FAIL", 300]
-]
-
-# Use:
-# key=lambda test: (test[1], test[2])
+result = sorted(tests, key=get_time, reverse=True)
+print("12:", result)
+# [['payment', 450], ['login', 120], ['search', 80]]
 
 
-# Exercise 15
-# We want PASS tests first and FAIL tests second.
-# Within each status, sort by execution time.
-
+# Exercise 13: Sort tests by execution time.
 tests = [
     ["login", "PASS", 120],
     ["payment", "FAIL", 450],
     ["search", "PASS", 80],
-    ["checkout", "FAIL", 300]
+    ["checkout", "FAIL", 300],
 ]
-
-status_order = {
-    "PASS": 0,
-    "FAIL": 1
-}
-
-# Use status_order inside the key.
+result = sorted(tests, key=lambda test: test[2])
+print("13:", result)
+# [['search', 'PASS', 80], ['login', 'PASS', 120],
+#  ['checkout', 'FAIL', 300], ['payment', 'FAIL', 450]]
 
 
-# ============================================
-# FINAL CHALLENGE
-# ============================================
+# Exercise 14: Sort by status alphabetically, then by time.
+tests = [
+    ["login", "PASS", 120],
+    ["payment", "FAIL", 450],
+    ["search", "PASS", 80],
+    ["checkout", "FAIL", 300],
+]
+result = sorted(tests, key=lambda test: (test[1], test[2]))
+print("14:", result)
+# FAIL sorts before PASS alphabetically:
+# [['checkout', 'FAIL', 300], ['payment', 'FAIL', 450],
+#  ['search', 'PASS', 80], ['login', 'PASS', 120]]
 
-# Keep only PASS tests,
-# sort them by execution time,
-# then convert their names to uppercase.
 
+# Exercise 15: Put PASS before FAIL, then sort each group by time.
+tests = [
+    ["login", "PASS", 120],
+    ["payment", "FAIL", 450],
+    ["search", "PASS", 80],
+    ["checkout", "FAIL", 300],
+]
+status_order = {"PASS": 0, "FAIL": 1}
+result = sorted(
+    tests,
+    key=lambda test: (status_order[test[1]], test[2]),
+)
+print("15:", result)
+# [['search', 'PASS', 80], ['login', 'PASS', 120],
+#  ['checkout', 'FAIL', 300], ['payment', 'FAIL', 450]]
+
+
+# Final challenge: Keep PASS tests, sort by time, then uppercase names.
 tests = [
     ["login", "PASS", 120],
     ["payment", "FAIL", 450],
     ["search", "PASS", 80],
     ["checkout", "PASS", 300],
-    ["profile", "FAIL", 200]
+    ["profile", "FAIL", 200],
 ]
 
-# Use:
-# filter()
-# sorted()
-# map()
-# lambda
+passed_tests = filter(lambda test: test[1] == "PASS", tests)
+sorted_tests = sorted(passed_tests, key=lambda test: test[2])
+result = list(map(lambda test: test[0].upper(), sorted_tests))
+
+print("Final challenge:", result)
+# ['SEARCH', 'LOGIN', 'CHECKOUT']
